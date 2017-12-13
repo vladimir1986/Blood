@@ -6,6 +6,7 @@ int game (int row,int col)
   int x,y;
 
   getmaxyx(stdscr,x,y);
+  ch=0;
 
   /***************************************************************************/
   /*                              Define colours                             */
@@ -18,9 +19,11 @@ int game (int row,int col)
   keypad(stdscr,TRUE);
   attrset(COLOR_PAIR(1));
   mvaddch(row,col,ACS_DIAMOND);
-    do
+  
+  do
     {
       ch=getch();
+      ch=toupper(ch);
       mvaddch(row,col,ACS_DIAMOND);
       switch (ch)
 	{
@@ -52,8 +55,10 @@ int game (int row,int col)
 	    col=col+1;
 	  mvaddch(row,col,ACS_DIAMOND);
 	  break;
+	default:
+	  return(0);
 	}
-    } while (ch != 'q');
-  getch();
+    } while (ch || 'Q');
+    getch();
   return(0);
 }
