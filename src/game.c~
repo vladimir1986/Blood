@@ -1,0 +1,60 @@
+int game (int row,int col)
+{
+  row=1;
+  col=1;
+  int ch;
+  int x,y;
+
+  getmaxyx(stdscr,x,y);
+
+  /***************************************************************************/
+  /*                              Define colours                             */
+  /***************************************************************************/
+
+  init_pair(1,COLOR_RED,COLOR_BLACK);
+  
+  clear();
+  box(stdscr, '|','-');
+  keypad(stdscr,TRUE);
+  attrset(COLOR_PAIR(1));
+  mvaddch(row,col,ACS_DIAMOND);
+  printw("Window is %d rows %d cols",x,y);
+    do
+    {
+      ch=getch();
+      mvaddch(row,col,ACS_DIAMOND);
+      switch (ch)
+	{
+	case KEY_DOWN:
+	  printw("%d %d",row,col);
+	  mvaddch(row,col,' ');
+	    row=row+1;
+	  
+	  mvaddch(row,col,ACS_DIAMOND);
+	  break;
+	case KEY_UP:
+	  printw("%d %d",row,col);
+	  mvaddch(row,col,' ');
+	  row=row-1;
+	  mvaddch(row,col,ACS_DIAMOND);
+	  break;
+	case KEY_RIGHT:
+	  printw("%d %d",row,col);
+	  if (y<=1){
+	    col=col+1;
+	  }
+	  mvaddch(row,col,' ');
+	  col=col+1;
+	  mvaddch(row,col,ACS_DIAMOND);
+	  break;
+	case KEY_LEFT:
+	  printw("%d %d",row,col);
+	  mvaddch(row,col,' ');
+	  col=col-1;
+	  mvaddch(row,col,ACS_DIAMOND);
+	  break;
+	}
+    } while (ch != 'q');
+  getch();
+  return(0);
+}

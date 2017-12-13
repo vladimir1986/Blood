@@ -1,0 +1,23 @@
+#include <stdlib.h>
+#include <unistd.h>
+
+int credits (int row, int col)
+{
+  clear();
+  printw("Text output: Inigo\n");
+  refresh();
+  sleep(1);
+  printw("Blood and gore: Inigo\n");
+  refresh();
+  sleep(1);
+  printw("Graphics: Inigo\n");
+  refresh();
+  sleep(1);
+  printw("3D Engine: Inigo\n");
+  refresh();
+  sleep(1);
+  mvprintw((row-1),1,"Created in 2017: Press any key to return to the main menu ;)");
+  refresh();
+  getch();
+  return (0);
+}
